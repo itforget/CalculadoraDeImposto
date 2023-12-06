@@ -53,6 +53,7 @@ button:hover {
   border-radius: 4px;
   color: #155724;
   margin: 0 600px;
+  min-width: 60px;
 }
 
 @media (max-width: 600px) {

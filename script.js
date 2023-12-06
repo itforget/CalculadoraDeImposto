@@ -1,14 +1,11 @@
-// Variável global para armazenar a quantidade de dependentes
 let quantidadeDependentes = 0;
 
 function calcularImposto() {
   const base = parseFloat(document.getElementById("base").value);
-
-  // Obtemos o valor atual do campo "quantDep" ou usamos o valor anterior se não for informado um novo
   const quantDepInput = document.getElementById("quantDep");
   const quantDep = quantDepInput.value !== "" ? parseInt(quantDepInput.value) : quantidadeDependentes;
 
-  // Se o campo "quantDep" for preenchido, atualizamos a variável global
+
   if (quantDepInput.value !== "") {
     quantidadeDependentes = quantDep;
   }
