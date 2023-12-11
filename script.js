@@ -1,16 +1,31 @@
 let quantidadeDependentes = 0;
 
 function calcularImposto() {
-  const base = parseFloat(document.getElementById("base").value);
+  const baseInput = document.getElementById("base");
   const quantDepInput = document.getElementById("quantDep");
-  const quantDep = quantDepInput.value !== "" ? parseInt(quantDepInput.value) : quantidadeDependentes;
+  const resultadoElement = document.getElementById("resultado");
 
+ 
+  if (baseInput.value === "") {
+    resultadoElement.innerText = "Informe o valor da base para calcular o imposto.";
+    return;
+  }
 
+  const base = parseFloat(baseInput.value);
+
+  
   if (quantDepInput.value !== "") {
+    const quantDep = parseInt(quantDepInput.value);
+
+    if (isNaN(quantDep)) {
+      resultadoElement.innerText = "Número de dependentes inválido";
+      return;
+    }
+
     quantidadeDependentes = quantDep;
   }
 
-  const dep = quantDep * 189.59;
+  const dep = quantidadeDependentes * 189.59;
 
   let aliquota, deducao;
   if (base <= 2112.00) {
@@ -32,5 +47,5 @@ function calcularImposto() {
 
   const ir = (base - dep) * aliquota - deducao;
 
-  document.getElementById("resultado").innerText = `Imposto de Renda: R$ ${ir.toFixed(2)}`;
+  resultadoElement.innerText = `Imposto de Renda: R$ ${ir.toFixed(2)}`;
 }
